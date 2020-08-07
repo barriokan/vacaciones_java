@@ -1,0 +1,65 @@
+[
+{
+   "ccaa_iso": "MD",
+   "fecha": "2020-07-16",
+   "num_casos": 2,
+   "num_casos_prueba_pcr": 2,
+   "num_casos_prueba_test_ac": 0,
+   "num_casos_prueba_otras": 0,
+   "num_casos_prueba_desconocida": 0
+ },
+ {
+   "ccaa_iso": "ML",
+   "fecha": "2020-07-16",
+   "num_casos": 0,
+   "num_casos_prueba_pcr": 0,
+   "num_casos_prueba_test_ac": 0,
+   "num_casos_prueba_otras": 0,
+   "num_casos_prueba_desconocida": 0
+ },
+ {
+   "ccaa_iso": "NC",
+   "fecha": "2020-07-16",
+   "num_casos": 0,
+   "num_casos_prueba_pcr": 0,
+   "num_casos_prueba_test_ac": 0,
+   "num_casos_prueba_otras": 0,
+   "num_casos_prueba_desconocida": 0
+ },
+{
+   "ccaa_iso": "AN",
+   "fecha": "2020-07-16",
+   "num_casos": 4,
+   "num_casos_prueba_pcr": 1,
+   "num_casos_prueba_test_ac": 1,
+   "num_casos_prueba_otras": 1,
+   "num_casos_prueba_desconocida": 1
+ },
+ {
+   "ccaa_iso": "PV",
+   "fecha": "2020-07-16",
+   "num_casos": 24,
+   "num_casos_prueba_pcr": 24,
+   "num_casos_prueba_test_ac": 0,
+   "num_casos_prueba_otras": 0,
+   "num_casos_prueba_desconocida": 0
+ },
+ {
+   "ccaa_iso": "RI",
+   "fecha": "2020-07-16",
+   "num_casos": 3,
+   "num_casos_prueba_pcr": 3,
+   "num_casos_prueba_test_ac": 0,
+   "num_casos_prueba_otras": 0,
+   "num_casos_prueba_desconocida": 0
+ },
+ {
+   "ccaa_iso": "VC",
+   "fecha": "2020-07-16",
+   "num_casos": 12,
+   "num_casos_prueba_pcr": 12,
+   "num_casos_prueba_test_ac": 0,
+   "num_casos_prueba_otras": 0,
+   "num_casos_prueba_desconocida": 0
+ }
+]
