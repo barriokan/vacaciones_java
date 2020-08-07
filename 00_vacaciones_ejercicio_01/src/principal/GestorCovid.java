@@ -1,6 +1,7 @@
 package principal;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
@@ -18,18 +19,27 @@ public class GestorCovid {
 		String ruta;
 		try {
 			ruta = bf.readLine();
-			int num_altas = covid.agregarDatos(ruta);
+			try {
+				int num_altas = covid.agregarDatos(ruta);
+		
+				if (num_altas > 0) {
+					System.out.println("Se han dado de alta "+num_altas+" registros.");
+				}
+				else {
+					System.out.println("No se ha dado de alta ningun registro en la tabla: ");
+				}
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+				System.out.println("El fichero no existe.");
+			} catch (IOException e) {
+				e.printStackTrace();
+				System.out.println("Problemas en la lectura del fichero: "+ruta);
+			}
 			
-			if (num_altas > 0) {
-				System.out.println("Se han dado de alta "+num_altas+" registros.");
-			}
-			else {
-				System.out.println("No se ha dado de alta ningun registro en la tabla: ");
-			}
-
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
 	}
 
 }
