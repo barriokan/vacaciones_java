@@ -66,18 +66,25 @@ public class GestorCajero {
 					case 5:
 						System.out.println("Introduce el numero de cuenta de destino: ");
 						int cuenta_destino = Integer.parseInt(sc.nextLine());
-						System.out.println("Introduce la cantidad a traspasar: ");
-						double transferencia = Double.parseDouble(sc.nextLine());
-						try {
-							if(cajero.realizarTransferencia(cuenta, cuenta_destino,transferencia)) {
-								System.out.println("Se ha realizado correctamente la transferencia.");
-								System.out.println("Se ha transferifdo la cantidad de "+transferencia+" de la cuenta "+cuenta+" a la cuenta "+cuenta_destino);
+						if (!cajero.validarCuenta(cuenta_destino)) {
+							
+							System.out.println("¡La cuenta destino a la que se intenta hacer la transferencia NO EXISTE! ");
+							
+						}
+						else {
+							System.out.println("Introduce la cantidad a traspasar: ");
+							double transferencia = Double.parseDouble(sc.nextLine());
+							try {
+								if(cajero.realizarTransferencia(cuenta, cuenta_destino,transferencia)) {
+									System.out.println("Se ha realizado correctamente la transferencia.");
+									System.out.println("Se ha transferifdo la cantidad de "+transferencia+" de la cuenta "+cuenta+" a la cuenta "+cuenta_destino);
+								}
+								else {
+									System.out.println("Se ha producido un error al realizar la transferencia.");
+								}
+							} catch (SaldoNegativoException e) {
+								System.out.println(e.getMessage());
 							}
-							else {
-								System.out.println("Se ha producido un error al realizar la transferencia.");
-							}
-						} catch (SaldoNegativoException e) {
-							System.out.println(e.getMessage());
 						}
 						break;
 				}

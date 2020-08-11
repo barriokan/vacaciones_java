@@ -160,9 +160,9 @@ public class OperacionesCajero {
 	
 	public boolean realizarTransferencia(int cuenta_origen,int cuenta_destino, double cantidad) throws SaldoNegativoException {
 		
-		ingresarDinero(cuenta_destino,cantidad);
-		
 		sacarDinero(cuenta_origen,cantidad);
+		
+		ingresarDinero(cuenta_destino,cantidad);
 		
 		return true;
 	}
