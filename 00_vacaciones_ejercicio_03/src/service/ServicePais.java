@@ -4,12 +4,14 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import model.Pais;
 
@@ -79,36 +81,69 @@ public class ServicePais {
     			          .collect(Collectors.toList());
     }
     
-	/*
+	
 	//Posición (longitud y latitud) del país cuyo alfa2code se recibe como parámetro.
-    public Double<> paisPosicion(String alfa2code){
-    	return getStream().filter(s-> ((String)s.get("alpha2Code")).equals(alfa2code))
-    			          .map(s->convertirALongitudLatitud(s))
-    			          .toArray();
-    	
-    }
-    
-    private double [] convertirALongitudLatitud(JSONObject s) {
-		double [] datos = new double[2];  
-		JSONArray longlat =(JSONArray)s.get("latlng"); 
-		int i = 0;
-		for(Object obj:longlat) {
-			datos[i]=(Double)obj;
-			i++;
+    public double [] paisPosicion(String alfa2code){
+    	String RUTA ="Datos_Paises.json";
+		FileReader reader;
+		try {
+			reader = new FileReader(RUTA);
+			JSONParser parser = new JSONParser();
+	    	JSONArray arreglojson;
+			arreglojson = (JSONArray) parser.parse(reader);
+			
+	    	for (Object obj:arreglojson) {
+	    		
+	    		JSONObject jsonobject = (JSONObject) obj;
+	    		
+	    		if (((String)jsonobject.get("alpha2Code")).equals(alfa2code)) {
+	    			JSONArray longlat =(JSONArray)jsonobject.get("latlng");
+	    	    	
+	    			double [] datos = new double[2];  
+	    			int i = 0;
+	    			for(Object object:longlat) {
+	    				datos[i]=(Double)object;
+	    				i++;
+	    			}
+	    			return datos;
+	    		}
+	    		else {
+	    			return null;
+	    		}
+	    	}
+	    	return null;
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			return null;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		} catch (ParseException e) {
+			e.printStackTrace();
+			return null;
 		}
-		return datos;
+		
     }
     
 	
 	//Población media de la región que se recibe como parámetro.
     public double mediaRegion(String region) {
-    	
+    	return getStream().filter(s-> s.get("region").equals(region) && s.get("area")!=null)
+    					  .collect(Collectors.averagingLong(p->(long)p.get("population")));
+		
     }
     
 	
 	//Tabla con las regiones y la población total de cada una.
-	public List<Tabla> regionPoblacionTotal(){
-		
+	public long totalPoblacionRegion(String region) {
+		return getStream()
+			.filter(c->c.get("region").equals(region))
+			.mapToLong(c->(long)c.get("population"))
+			.sum();
 	}
-	*/
+	
+	public Map<String,List<JSONObject>> paisesPorContinente(){
+		return getStream()			
+				.collect(Collectors.groupingBy(p->(String)p.get("region")));
+	}
 }

@@ -2,6 +2,9 @@ package principal;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
+import org.json.simple.JSONObject;
 
 import model.Pais;
 import service.ServicePais;
@@ -44,6 +47,27 @@ public class test {
 										 p.getCapital()+" - "+
 										 p.getArea()+" - "+
 										 p.getPoblacion()));
+		
+		
+		String alfa2code = "AF";
+		System.out.println("La latitud y longitud para alpha2Code igual a "+alfa2code+ " son:" );
+		double [] datos = new double[2];
+		datos = sp.paisPosicion(alfa2code);
+		System.out.println("La latitud es "+datos[0]);
+		System.out.println("La longitud es "+datos[1]);
+		
+		String continente = "Europe";
+		double media = sp.mediaRegion(continente);
+		System.out.println("La media de poblacion de "+continente+" es de: ");
+		System.out.printf("%.3f",media);
+		
+		System.out.println("-----Tabla poblacion por continente-------");
+		Map<String,List<JSONObject>> paisesContinente=sp.paisesPorContinente();
+		paisesContinente.forEach((k,v)->{
+			System.out.print(k+":");
+			System.out.println(sp.totalPoblacionRegion(k));
+		});
+		
 	}
 
 }
